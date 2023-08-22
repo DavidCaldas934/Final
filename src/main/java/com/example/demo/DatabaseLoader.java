@@ -9,14 +9,14 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	private final InstrumentoRepository repositoryI;
 	private final MusicoRepository repositoryM;
-	private final BandaRepository repositoryB;
+	private final ProductoRepository repositoryB;
 	private final IntegranteRepository repositoryN;
 
 	@Autowired
 	public DatabaseLoader(
 		InstrumentoRepository repositoryI,
 		 MusicoRepository repositoryM,
-		 BandaRepository repositoryB,
+		 ProductoRepository repositoryB,
 		 IntegranteRepository repositoryN) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
@@ -46,8 +46,8 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryM.save(mRogerWaters);
 		this.repositoryM.save(new Musico("Roger"));
 
-		Banda bQueen = new Banda("Queen");
-		Banda bPinkFloyd = new Banda("Pink Floyd");
+		Producto bQueen = new Producto("Queen");
+		Producto bPinkFloyd = new Producto("Pink Floyd");
 		this.repositoryB.save(bQueen);
 		this.repositoryB.save(bPinkFloyd);
 

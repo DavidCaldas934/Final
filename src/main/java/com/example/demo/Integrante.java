@@ -12,57 +12,47 @@ public class Integrante {
 	private @Id @GeneratedValue Long id;
 
 	@ManyToOne()
-	@JoinColumn(name = "id_banda")
-	private Banda banda;
+	@JoinColumn(name = "id_producto")
+	private Producto producto;
+	private int cantidad;
 
-	@ManyToOne()
-	@JoinColumn(name = "id_musico")
-	private Musico musico;
-
-	@ManyToOne()
-	@JoinColumn(name = "id_instrumento")
-	private Instrumento instrumento;
 
 	public Integrante() {}
 
-	public Integrante (Banda banda, Musico musico, Instrumento instrumento) {
-		this.banda = banda;
-		this.musico = musico;
-		this.instrumento = instrumento;
-	}
+
+    public Integrante(Producto producto, int cantidad) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-    public Banda getBanda() {
-        return banda;
-    }
 
-    public void setBanda(Banda banda) {
-        this.banda = banda;
-    }
+	public Producto getProducto() {
+		return producto;
+	}
 
-    public Musico getMusico() {
-        return musico;
-    }
 
-    public void setMusico(Musico musico) {
-        this.musico = musico;
-    }
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
 
-    public Instrumento getInstrumento() {
-        return instrumento;
-    }
 
-    public void setInstrumento(Instrumento instrumento) {
-        this.instrumento = instrumento;
-    }
+	public int getCantidad() {
+		return cantidad;
+	}
 
-	
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
 
 }

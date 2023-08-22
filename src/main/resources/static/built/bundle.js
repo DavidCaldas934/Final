@@ -40800,32 +40800,24 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
   createBrowserRouter = _require.createBrowserRouter,
   RouterProvider = _require.RouterProvider;
 var PageHome = __webpack_require__(/*! ./pages/home */ "./src/main/js/pages/home.js");
-var PageVerInstrumento = __webpack_require__(/*! ./pages/ver-instrumento */ "./src/main/js/pages/ver-instrumento.js");
-var PageNuevoInstrumento = __webpack_require__(/*! ./pages/nuevo-instrumento */ "./src/main/js/pages/nuevo-instrumento.js");
-var PageNuevoMusico = __webpack_require__(/*! ./pages/nuevo-musico */ "./src/main/js/pages/nuevo-musico.js");
-var PageEditarMusico = __webpack_require__(/*! ./pages/editar-musico */ "./src/main/js/pages/editar-musico.js");
-var PageEditarInstrumento = __webpack_require__(/*! ./pages/editar-instrumento */ "./src/main/js/pages/editar-instrumento.js");
+/*const PageVerInstrumento = require('./pages/ver-instrumento');
+const PageNuevoInstrumento = require('./pages/nuevo-instrumento');
+const PageNuevoMusico = require('./pages/nuevo-musico');
+const PageEditarMusico = require('./pages/editar-musico');
+const PageEditarInstrumento = require('./pages/editar-instrumento');
+*/
 var PageVerBanda = __webpack_require__(/*! ./pages/ver-banda */ "./src/main/js/pages/ver-banda.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(PageHome, null)
-}, {
-  path: '/ver-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageVerInstrumento, null)
-}, {
-  path: '/nuevo-instrumento',
-  element: /*#__PURE__*/React.createElement(PageNuevoInstrumento, null)
-}, {
-  path: '/nuevo-musico',
-  element: /*#__PURE__*/React.createElement(PageNuevoMusico, null)
-}, {
-  path: '/editar-musico/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarMusico, null)
-}, {
-  path: '/editar-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarInstrumento, null)
-}, {
+},
+/*{path: '/ver-instrumento/:id', element: <PageVerInstrumento />},
+{path: '/nuevo-instrumento', element: <PageNuevoInstrumento />},
+{path: '/nuevo-musico', element: <PageNuevoMusico />},
+{path: '/editar-musico/:id', element: <PageEditarMusico />},
+{path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},*/
+{
   path: '/ver-banda/:id',
   element: /*#__PURE__*/React.createElement(PageVerBanda, null)
 }, {
@@ -40867,184 +40859,6 @@ module.exports = rest.wrap(mime, {
 
 /***/ }),
 
-/***/ "./src/main/js/pages/editar-instrumento.js":
-/*!*************************************************!*\
-  !*** ./src/main/js/pages/editar-instrumento.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require.useState,
-  useEffect = _require.useEffect;
-var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  useParams = _require2.useParams,
-  Link = _require2.Link;
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var PageEditarInstrumento = function PageEditarInstrumento() {
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
-  useEffect(function () {
-    client({
-      method: 'GET',
-      path: '/api/instrumentos/' + id,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function (response) {
-      setInstrumento(response.entity);
-    });
-  }, []);
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    client({
-      method: 'PATCH',
-      path: '/api/instrumentos/' + id,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      entity: instrumento
-    }).done(function () {
-      return window.location = "/";
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Instrumento: ", id), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "nombre",
-    value: instrumento.nombre,
-    onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
-        nombre: e.target.value
-      }));
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "categoria",
-    value: instrumento.categoria,
-    onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
-        categoria: e.target.value
-      }));
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "descripcion",
-    value: instrumento.descripcion,
-    onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
-        descripcion: e.target.value
-      }));
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Editar Instrumento ".concat(id)
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageEditarInstrumento;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/editar-musico.js":
-/*!********************************************!*\
-  !*** ./src/main/js/pages/editar-musico.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require.useState,
-  useEffect = _require.useEffect;
-var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  useParams = _require2.useParams,
-  Link = _require2.Link;
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var PageEditarMusico = function PageEditarMusico() {
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    musico = _useState2[0],
-    setMusico = _useState2[1];
-  useEffect(function () {
-    client({
-      method: 'GET',
-      path: '/api/musicos/' + id,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function (response) {
-      setMusico(response.entity);
-    });
-  }, []);
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-    client({
-      method: 'PATCH',
-      path: '/api/musicos/' + id,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      entity: musico
-    }).done(function () {
-      return window.location = "/";
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Musico: ", id), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "nombre",
-    value: musico.nombre,
-    onChange: function onChange(e) {
-      setMusico(_objectSpread(_objectSpread({}, musico), {}, {
-        nombre: e.target.value
-      }));
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Editar Musico ".concat(id)
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageEditarMusico;
-
-/***/ }),
-
 /***/ "./src/main/js/pages/home.js":
 /*!***********************************!*\
   !*** ./src/main/js/pages/home.js ***!
@@ -41076,9 +40890,8 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     var _this;
     _classCallCheck(this, PageHome);
     _this = _super.call(this, props);
+    //this.state = { instrumentos: [], musicos: [], bandas: [] };
     _this.state = {
-      instrumentos: [],
-      musicos: [],
       bandas: []
     };
     return _this;
@@ -41087,22 +40900,13 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
-      client({
-        method: 'GET',
-        path: '/api/instrumentos'
-      }).done(function (response) {
-        _this2.setState({
-          instrumentos: response.entity._embedded.instrumentos
-        });
+      /*client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
+      	this.setState({ instrumentos: response.entity._embedded.instrumentos });
       });
-      client({
-        method: 'GET',
-        path: '/api/musicos'
-      }).done(function (response) {
-        _this2.setState({
-          musicos: response.entity._embedded.musicos
-        });
+      client({ method: 'GET', path: '/api/musicos' }).done(response => {
+      	this.setState({ musicos: response.entity._embedded.musicos });
       });
+      */
       client({
         method: 'GET',
         path: '/api/bandas'
@@ -41122,29 +40926,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/React.createElement("div", {
         style: {
-          "width": "calc(100% / 3)"
-        }
-      }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Instrumentos",
-        emoji: "\uD83C\uDFB8"
-      }), /*#__PURE__*/React.createElement(InstrumentoList, {
-        instrumentos: this.state.instrumentos
-      }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-instrumento"
-      }, "Nuevo Instrumento")), /*#__PURE__*/React.createElement("div", {
-        style: {
-          "width": "calc(100% / 3)"
-        }
-      }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Musicos",
-        emoji: "\uD83C\uDFB5"
-      }), /*#__PURE__*/React.createElement(MusicoList, {
-        musicos: this.state.musicos
-      }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-musico"
-      }, "Nuevo Musico")), /*#__PURE__*/React.createElement("div", {
-        style: {
-          "width": "calc(100% / 3)"
+          "width": "calc(100% / 2)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
         entidad: "Bandas",
@@ -41153,7 +40935,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
         bandas: this.state.bandas
       }), /*#__PURE__*/React.createElement(Link, {
         to: "/nueva-banda"
-      }, "Nueva Banda"))));
+      }, "Nueva Detalle Venta"))));
     }
   }]);
   return PageHome;
@@ -41161,58 +40943,12 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
 var Titulo = function Titulo(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, props.emoji, " - ", props.entidad), /*#__PURE__*/React.createElement("span", null, "Listado completo de ", props.entidad.toLowerCase(), ":"), /*#__PURE__*/React.createElement("hr", null));
 };
-var InstrumentoList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(InstrumentoList, _React$Component2);
-  var _super2 = _createSuper(InstrumentoList);
-  function InstrumentoList() {
-    _classCallCheck(this, InstrumentoList);
-    return _super2.apply(this, arguments);
-  }
-  _createClass(InstrumentoList, [{
-    key: "render",
-    value: function render() {
-      var instrumentos = this.props.instrumentos.map(function (instrumento) {
-        return /*#__PURE__*/React.createElement(Instrumento, {
-          key: instrumento._links.self.href,
-          instrumento: instrumento
-        });
-      });
-      return /*#__PURE__*/React.createElement("table", {
-        border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), instrumentos));
-    }
-  }]);
-  return InstrumentoList;
-}(React.Component);
-var MusicoList = /*#__PURE__*/function (_React$Component3) {
-  _inherits(MusicoList, _React$Component3);
-  var _super3 = _createSuper(MusicoList);
-  function MusicoList() {
-    _classCallCheck(this, MusicoList);
-    return _super3.apply(this, arguments);
-  }
-  _createClass(MusicoList, [{
-    key: "render",
-    value: function render() {
-      var musicos = this.props.musicos.map(function (musico) {
-        return /*#__PURE__*/React.createElement(Musico, {
-          key: musico._links.self.href,
-          musico: musico
-        });
-      });
-      return /*#__PURE__*/React.createElement("table", {
-        border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), musicos));
-    }
-  }]);
-  return MusicoList;
-}(React.Component);
-var BandaList = /*#__PURE__*/function (_React$Component4) {
-  _inherits(BandaList, _React$Component4);
-  var _super4 = _createSuper(BandaList);
+var BandaList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(BandaList, _React$Component2);
+  var _super2 = _createSuper(BandaList);
   function BandaList() {
     _classCallCheck(this, BandaList);
-    return _super4.apply(this, arguments);
+    return _super2.apply(this, arguments);
   }
   _createClass(BandaList, [{
     key: "render",
@@ -41230,50 +40966,12 @@ var BandaList = /*#__PURE__*/function (_React$Component4) {
   }]);
   return BandaList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Instrumento, _React$Component5);
-  var _super5 = _createSuper(Instrumento);
-  function Instrumento() {
-    _classCallCheck(this, Instrumento);
-    return _super5.apply(this, arguments);
-  }
-  _createClass(Instrumento, [{
-    key: "render",
-    value: function render() {
-      var id = this.props.instrumento._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.instrumento.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-instrumento/".concat(id)
-      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-instrumento/".concat(id)
-      }, "Editar")));
-    }
-  }]);
-  return Instrumento;
-}(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component6) {
-  _inherits(Musico, _React$Component6);
-  var _super6 = _createSuper(Musico);
-  function Musico() {
-    _classCallCheck(this, Musico);
-    return _super6.apply(this, arguments);
-  }
-  _createClass(Musico, [{
-    key: "render",
-    value: function render() {
-      var id = this.props.musico._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.musico.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-musico/".concat(id)
-      }, "Editar")));
-    }
-  }]);
-  return Musico;
-}(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Banda, _React$Component7);
-  var _super7 = _createSuper(Banda);
+var Banda = /*#__PURE__*/function (_React$Component3) {
+  _inherits(Banda, _React$Component3);
+  var _super3 = _createSuper(Banda);
   function Banda() {
     _classCallCheck(this, Banda);
-    return _super7.apply(this, arguments);
+    return _super3.apply(this, arguments);
   }
   _createClass(Banda, [{
     key: "render",
@@ -41287,95 +40985,6 @@ var Banda = /*#__PURE__*/function (_React$Component7) {
   return Banda;
 }(React.Component);
 module.exports = PageHome;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/nuevo-instrumento.js":
-/*!************************************************!*\
-  !*** ./src/main/js/pages/nuevo-instrumento.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageNuevoInstrumento = function PageNuevoInstrumento() {
-  var _useState = useState(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    nombre = _useState2[0],
-    setNombre = _useState2[1];
-  var _useState3 = useState(''),
-    _useState4 = _slicedToArray(_useState3, 2),
-    categoria = _useState4[0],
-    setCategoria = _useState4[1];
-  var _useState5 = useState(''),
-    _useState6 = _slicedToArray(_useState5, 2),
-    descripcion = _useState6[0],
-    setDescripcion = _useState6[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    client({
-      method: 'POST',
-      path: '/api/instrumentos',
-      entity: {
-        nombre: nombre,
-        categoria: categoria,
-        descripcion: descripcion
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function () {
-      window.location = '/';
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Instrumento"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "nombre"
-  }, "Nombre"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "nombre",
-    name: "nombre",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "categoria"
-  }, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "categoria",
-    name: "categoria",
-    onChange: function onChange(e) {
-      return setCategoria(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "descripcion"
-  }, "Descripcion"), /*#__PURE__*/React.createElement("textarea", {
-    cols: 30,
-    id: "descripcion",
-    name: "descripcion",
-    onChange: function onChange(e) {
-      return setDescripcion(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Nuevo Instrumento"
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageNuevoInstrumento;
 
 /***/ }),
 
@@ -41501,65 +41110,6 @@ module.exports = NuevoIntegrantePage;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/nuevo-musico.js":
-/*!*******************************************!*\
-  !*** ./src/main/js/pages/nuevo-musico.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageNuevoMusico = function PageNuevoMusico() {
-  var _useState = useState(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    nombre = _useState2[0],
-    setNombre = _useState2[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    client({
-      method: 'POST',
-      path: '/api/musicos',
-      entity: {
-        nombre: nombre
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function () {
-      window.location = '/';
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo M\xFAsico"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "nombre",
-    name: "nombre",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Nuevo M\xFAsico"
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageNuevoMusico;
-
-/***/ }),
-
 /***/ "./src/main/js/pages/ver-banda.js":
 /*!****************************************!*\
   !*** ./src/main/js/pages/ver-banda.js ***!
@@ -41622,51 +41172,6 @@ var PageVerBanda = function PageVerBanda() {
   }, "Volver"));
 };
 module.exports = PageVerBanda;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/ver-instrumento.js":
-/*!**********************************************!*\
-  !*** ./src/main/js/pages/ver-instrumento.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link,
-  useParams = _require.useParams;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState,
-  useEffect = _require2.useEffect;
-var PageVerInstrumento = function PageVerInstrumento(props) {
-  // const id = props.match.params.id;
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
-  useEffect(function () {
-    client({
-      method: 'GET',
-      path: '/api/instrumentos/' + id
-    }).done(function (response) {
-      setInstrumento(response.entity);
-    });
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Instrumento"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, instrumento.nombre)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("td", null, instrumento.categoria)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("td", null, instrumento.descripcion))), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageVerInstrumento;
 
 /***/ }),
 
