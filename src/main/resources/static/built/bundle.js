@@ -40808,7 +40808,7 @@ const PageEditarInstrumento = require('./pages/editar-instrumento');
 */
 var PageVerBanda = __webpack_require__(/*! ./pages/ver-producto */ "./src/main/js/pages/ver-producto.js");
 var PageNuevoDetalleVenta = __webpack_require__(/*! ./pages/nuevo-detalle-venta */ "./src/main/js/pages/nuevo-detalle-venta.js");
-var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
+var PageNuevoProducto = __webpack_require__(/*! ./pages/nuevo-producto */ "./src/main/js/pages/nuevo-producto.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(PageHome, null)
@@ -40822,8 +40822,8 @@ var router = createBrowserRouter([{
   path: '/nuevo-detalle-venta',
   element: /*#__PURE__*/React.createElement(PageNuevoDetalleVenta, null)
 }, {
-  path: '/ver-banda/:id/nuevo-integrante',
-  element: /*#__PURE__*/React.createElement(PageNuevoIntegrante, null)
+  path: '/ver-producto/:id/nuevo-producto',
+  element: /*#__PURE__*/React.createElement(PageNuevoProducto, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
   router: router
@@ -40913,6 +40913,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
         method: 'GET',
         path: '/api/ventas'
       }).done(function (response) {
+        console.log(response.entity._embedded.ventas); // Verifica la respuesta de la API
         _this2.setState({
           ventas: response.entity._embedded.ventas
         });
@@ -40921,6 +40922,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
         method: 'GET',
         path: '/api/productos'
       }).done(function (response) {
+        console.log(response.entity._embedded.productos); // Verifica la respuesta de la API
         _this2.setState({
           productos: response.entity._embedded.productos
         });
@@ -40955,8 +40957,8 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/React.createElement(ProductoList, {
         producto: this.state.productos
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nueva-producto"
-      }, "Nueva Detalle Venta"))));
+        to: "/nuevo-producto"
+      }, "Nuevo Detalle Venta"))));
     }
   }]);
   return PageHome;
@@ -40974,7 +40976,8 @@ var ProductoList = /*#__PURE__*/function (_React$Component2) {
   _createClass(ProductoList, [{
     key: "render",
     value: function render() {
-      var productos = this.props.productos.map(function (producto) {
+      var productos = this.props.productos || []; // Manejo si productos es undefined
+      var productosRender = productos.map(function (producto) {
         return /*#__PURE__*/React.createElement(Producto, {
           key: producto._links.self.href,
           producto: producto
@@ -40982,7 +40985,7 @@ var ProductoList = /*#__PURE__*/function (_React$Component2) {
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Precio"), /*#__PURE__*/React.createElement("th", null, "Acciones")), productos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Precio"), /*#__PURE__*/React.createElement("th", null, "Acciones")), productosRender));
     }
   }]);
   return ProductoList;
@@ -41025,7 +41028,7 @@ var VentaList = /*#__PURE__*/function (_React$Component4) {
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "TOTAL"), /*#__PURE__*/React.createElement("th", null, "Acciones")), ventas));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "total"), /*#__PURE__*/React.createElement("th", null, "Acciones")), ventas));
     }
   }]);
   return VentaList;
@@ -41158,10 +41161,10 @@ module.exports = PageNuevoDetalleVenta;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/nuevo-integrante.js":
-/*!***********************************************!*\
-  !*** ./src/main/js/pages/nuevo-integrante.js ***!
-  \***********************************************/
+/***/ "./src/main/js/pages/nuevo-producto.js":
+/*!*********************************************!*\
+  !*** ./src/main/js/pages/nuevo-producto.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41172,31 +41175,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require.useState,
-  useEffect = _require.useEffect;
-var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require2.Link,
-  useParams = _require2.useParams;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var NuevoIntegrantePage = function NuevoIntegrantePage() {
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState([]),
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageNuevoProducto = function PageNuevoProducto() {
+  var _useState = useState(''),
     _useState2 = _slicedToArray(_useState, 2),
-    productos = _useState2[0],
-    setProductos = _useState2[1];
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
   var _useState3 = useState(''),
     _useState4 = _slicedToArray(_useState3, 2),
-    idProducto = _useState4[0],
-    setIdProducto = _useState4[1];
-  var handleSubmit = function handleSubmit(evento) {
-    evento.preventDefault();
+    precio = _useState4[0],
+    setPrecio = _useState4[1];
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
     client({
       method: 'POST',
-      path: '/api/integrantes',
+      path: '/api/productos',
       entity: {
-        producto: 'http://localhost:8080/api/productos/' + id
+        nombre: nombre,
+        precio: precio
       },
       headers: {
         'Content-Type': 'application/json'
@@ -41205,68 +41205,34 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
       window.location = '/';
     });
   };
-  useEffect(function () {
-    client({
-      method: 'GET',
-      path: '/api/productos'
-    }).done(function (response) {
-      var productos2 = [];
-      response.entity._embedded.musicos.map(function (producto) {
-        productos2.push({
-          value: producto._links.self.href.split('/').slice(-1),
-          label: producto.nombre
-        });
-      });
-      setMusicos(productos2);
-    });
-    client({
-      method: 'GET',
-      path: '/api/instrumentos'
-    }).done(function (response) {
-      var instrumentos2 = [];
-      response.entity._embedded.instrumentos.map(function (instrumento) {
-        instrumentos2.push({
-          value: instrumento._links.self.href.split('/').slice(-1),
-          label: instrumento.nombre
-        });
-      });
-      setInstrumentos(instrumentos2);
-    });
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Producto"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "musico"
-  }, "Musico"), /*#__PURE__*/React.createElement("select", {
-    name: "musico",
-    id: "musico",
+    htmlFor: "nombre"
+  }, "Nombre"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
     onChange: function onChange(e) {
-      setIdMusico(e.target.value);
+      return setNombre(e.target.value);
     }
-  }, musicos.map(function (musico) {
-    return /*#__PURE__*/React.createElement("option", {
-      key: musico.value,
-      value: musico.value
-    }, musico.label);
-  })), /*#__PURE__*/React.createElement("label", null, "Instrumento"), /*#__PURE__*/React.createElement("select", {
-    name: "instrumento",
-    id: "instrumento",
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "producto"
+  }, "Producto"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "producto",
+    name: "producto",
     onChange: function onChange(e) {
-      setIdInstrumento(e.target.value);
+      return setProducto(e.target.value);
     }
-  }, instrumentos.map(function (instrumento) {
-    return /*#__PURE__*/React.createElement("option", {
-      key: instrumento.value,
-      value: instrumento.value
-    }, instrumento.label);
-  })), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Nuevo Integrante"
+    value: "Nuevo Producto"
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = NuevoIntegrantePage;
+module.exports = PageNuevoProducto;
 
 /***/ }),
 

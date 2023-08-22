@@ -17,11 +17,14 @@ class PageHome extends React.Component {
 		});
 		*/
 		client({ method: 'GET', path: '/api/ventas' }).done(response => {
+			console.log(response.entity._embedded.ventas); // Verifica la respuesta de la API
 			this.setState({ ventas: response.entity._embedded.ventas });
-		});
+		  });
+		
 		client({ method: 'GET', path: '/api/productos' }).done(response => {
+			console.log(response.entity._embedded.productos); // Verifica la respuesta de la API
 			this.setState({ productos: response.entity._embedded.productos });
-		});
+		  });
 
 	}
 	render() {
@@ -41,7 +44,7 @@ class PageHome extends React.Component {
 					<div style={{"width": "calc(100% / 2)"}}>
 						<Titulo entidad="Producto" emoji="👩🏼‍🎤" />
 						<ProductoList producto={this.state.productos} />
-						<Link to="/nueva-producto">Nueva Detalle Venta</Link>
+						<Link to="/nuevo-producto">Nuevo Detalle Venta</Link>
 					</div>
 				</div>
 
@@ -67,23 +70,24 @@ const Titulo = (props) => {
 
 class ProductoList extends React.Component {
 	render() {
-		const productos = this.props.productos.map(producto =>
-			<Producto key={producto._links.self.href} producto={producto} />
-		);
-		return (
-			<table border="1">
-				<tbody>
-					<tr>
-						<th>Nombre</th>
-						<th>Precio</th>
-						<th>Acciones</th>
-					</tr>
-					{productos}
-				</tbody>
-			</table>
-		)
+	  const productos = this.props.productos || []; // Manejo si productos es undefined
+	  const productosRender = productos.map(producto =>
+		<Producto key={producto._links.self.href} producto={producto} />
+	  );
+	  return (
+		<table border="1">
+		  <tbody>
+			<tr>
+			  <th>Nombre</th>
+			  <th>Precio</th>
+			  <th>Acciones</th>
+			</tr>
+			{productosRender}
+		  </tbody>
+		</table>
+	  )
 	}
-}
+  }
 
 
 class Producto extends React.Component {
@@ -111,7 +115,7 @@ class VentaList extends React.Component {
 			<table border="1">
 				<tbody>
 					<tr>
-						<th>TOTAL</th>
+						<th>total</th>
 						<th>Acciones</th>
 					</tr>
 					{ventas}
