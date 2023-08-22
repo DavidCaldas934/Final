@@ -36,6 +36,7 @@ const PageVerProducto = () => {
                     <tr>
                         <th>Nombre</th>
                         <td>{producto.nombre}</td>
+                        <td>{producto.precio}</td>
                     </tr>
                 </tbody>
             </table>
@@ -57,7 +58,6 @@ const PageVerProducto = () => {
                         return (
                             <tr key={integrante.ID}>
                                 <td>{integrante.PRODUCTO}</td>
-                                <td>{integrante.INSTRUMENTO}</td>
                             </tr>
                         )
 
@@ -66,7 +66,7 @@ const PageVerProducto = () => {
                 </tbody>
             </table>
             <hr />
-            <Link to={`/ver-producto/${id}/nuevo-integrante`}>Agregar integrante</Link> |  
+            <Link to={`/ver-producto/${id}`}>Agregar Producto</Link> |  
             <Link to="/">Volver</Link>
         </>
     )

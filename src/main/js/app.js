@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 	{path: '/nuevo-musico', element: <PageNuevoMusico />},
 	{path: '/editar-musico/:id', element: <PageEditarMusico />},
 	{path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},*/
-	{path: '/ver-banda/:id', element: <PageVerBanda />},
+	
 	{path: '/ver-banda/:id/nuevo-integrante', element: <PageNuevoIntegrante />},
 ])
 

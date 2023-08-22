@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements CommandLineRunner {
 
 	private final ProductoRepository repositoryP;
-	private final IntegranteRepository repositoryN;
+	private final DetalleVentaRepository repositoryN;
 
 	@Autowired
 	public DatabaseLoader(
 
 		 ProductoRepository repositoryP,
-		 IntegranteRepository repositoryN) {
+		 DetalleVentaRepository repositoryN) {
 
 		this.repositoryP = repositoryP;
 		this.repositoryN = repositoryN;

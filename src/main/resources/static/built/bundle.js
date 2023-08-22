@@ -40817,10 +40817,8 @@ var router = createBrowserRouter([{
 {path: '/nuevo-musico', element: <PageNuevoMusico />},
 {path: '/editar-musico/:id', element: <PageEditarMusico />},
 {path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},*/
+
 {
-  path: '/ver-banda/:id',
-  element: /*#__PURE__*/React.createElement(PageVerBanda, null)
-}, {
   path: '/ver-banda/:id/nuevo-integrante',
   element: /*#__PURE__*/React.createElement(PageNuevoIntegrante, null)
 }]);
@@ -41149,15 +41147,15 @@ var PageVerProducto = function PageVerProducto() {
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Producto"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, producto.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
+  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, producto.nombre), /*#__PURE__*/React.createElement("td", null, producto.precio)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
     border: "1"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Producto"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
     return /*#__PURE__*/React.createElement("tr", {
       key: integrante.ID
-    }, /*#__PURE__*/React.createElement("td", null, integrante.PRODUCTO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
+    }, /*#__PURE__*/React.createElement("td", null, integrante.PRODUCTO));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
-    to: "/ver-producto/".concat(id, "/nuevo-integrante")
-  }, "Agregar integrante"), " |", /*#__PURE__*/React.createElement(Link, {
+    to: "/ver-producto/".concat(id)
+  }, "Agregar Producto"), " |", /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
