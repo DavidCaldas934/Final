@@ -35,17 +35,17 @@ class PageHome extends React.Component {
                     }}
                 >
                     <div style={{ width: "calc(100% / 3)" }}>
-                        <Titulo entidad="Vendedores" emoji="👨‍💼" />
+                        <Titulo entidad="Vendedores" />
                         <VendedorList vendedores={this.state.vendedores} />
                         <Link to="/nuevo-vendedor">Nuevo Vendedor</Link>
                     </div>
                     <div style={{ width: "calc(100% / 3)" }}>
-                        <Titulo entidad="Productos" emoji="🛍️" />
+                        <Titulo entidad="Productos"/>
                         <ProductoList productos={this.state.productos} />
                         <Link to="/nuevo-producto">Nuevo Producto</Link>
                     </div>
                     <div style={{ width: "calc(100% / 3)" }}>
-                        <Titulo entidad="Ventas" emoji="🏷️" />
+                        <Titulo entidad="Ventas"/>
                         <VentaList ventas={this.state.ventas} />
                         <Link to="/nueva-venta">Nueva Venta</Link>
                     </div>
@@ -134,7 +134,7 @@ class Vendedor extends React.Component {
             <tr>
                 <td>{this.props.vendedor.nombre}</td>
                 <td>
-                    <Link to={`/editar-vendedor/${id}`}>Actualizar</Link>
+                    <Link to={`/editar-vendedor/${id}`}>editar</Link>
                 </td>
             </tr>
         );

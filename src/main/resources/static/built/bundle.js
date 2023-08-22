@@ -41131,8 +41131,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Vendedores",
-        emoji: "\uD83D\uDC68\u200D\uD83D\uDCBC"
+        entidad: "Vendedores"
       }), /*#__PURE__*/React.createElement(VendedorList, {
         vendedores: this.state.vendedores
       }), /*#__PURE__*/React.createElement(Link, {
@@ -41142,8 +41141,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Productos",
-        emoji: "\uD83D\uDECD\uFE0F"
+        entidad: "Productos"
       }), /*#__PURE__*/React.createElement(ProductoList, {
         productos: this.state.productos
       }), /*#__PURE__*/React.createElement(Link, {
@@ -41153,8 +41151,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Ventas",
-        emoji: "\uD83C\uDFF7\uFE0F"
+        entidad: "Ventas"
       }), /*#__PURE__*/React.createElement(VentaList, {
         ventas: this.state.ventas
       }), /*#__PURE__*/React.createElement(Link, {
@@ -41250,7 +41247,7 @@ var Vendedor = /*#__PURE__*/function (_React$Component5) {
       var id = this.props.vendedor._links.self.href.split("/").slice(-1);
       return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.vendedor.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
         to: "/editar-vendedor/".concat(id)
-      }, "Actualizar")));
+      }, "editar")));
     }
   }]);
   return Vendedor;

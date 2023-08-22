@@ -36,33 +36,29 @@ public class DatabaseLoader implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		
-		Producto producto1 = new Producto("Perfume", 10.0);
-        Producto producto2 = new Producto("Shampoo", 20.0);
-        Producto producto3 = new Producto("Jabón", 30.0);
+		Producto producto1 = new Producto("Monitor GAMER FACTORY 19 PULGADAS", 1500.0);
+        Producto producto2 = new Producto("Monitor SAMSUN 24 PULGADAS", 1500.0);
+        Producto producto3 = new Producto("RTX 4090", 3000.0);
 
         this.productoRepository.save(producto1);
         this.productoRepository.save(producto2);
         this.productoRepository.save(producto3);
 
-        Vendedor vendedor1 = new Vendedor("Joel Capristan Lara");
-        Vendedor vendedor2 = new Vendedor("Aaron Hurado Cardenas");
+
+        Vendedor vendedor1 = new Vendedor("David Quispe Caldas");
 
         this.vendedorRepository.save(vendedor1);
-        this.vendedorRepository.save(vendedor2);
 
-        Venta venta1 = new Venta(1, vendedor1, 60.0, 10.0, 50.0);
-        Venta venta2 = new Venta(2, vendedor2, 80.0, 14.4, 25.4);
+        Venta venta1 = new Venta(1, vendedor1, 6000.0, 1000.0, 5000.0);
 
         this.ventaRepository.save(venta1);
-        this.ventaRepository.save(venta2);
 
-        VentaDetalle detalle1 = new VentaDetalle(venta1, producto1, 1, 10.0);
-        VentaDetalle detalle2 = new VentaDetalle(venta1, producto2, 4, 65.0);
-        VentaDetalle detalle3 = new VentaDetalle(venta2, producto3, 1,15.0);
+
+        VentaDetalle detalle1 = new VentaDetalle(venta1, producto1, 1, 1000.0);
+
 
         this.ventaDetalleRepository.save(detalle1);
-        this.ventaDetalleRepository.save(detalle2);
-        this.ventaDetalleRepository.save(detalle3);
+
 	}
 
 	
