@@ -1,33 +1,35 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const {createBrowserRouter, RouterProvider} = require('react-router-dom');
+const React = require("react");
+const ReactDOM = require("react-dom");
+const { createBrowserRouter, RouterProvider } = require("react-router-dom");
 
-const PageHome = require('./pages/home');
-/*const PageVerInstrumento = require('./pages/ver-instrumento');
-const PageNuevoInstrumento = require('./pages/nuevo-instrumento');
-const PageNuevoMusico = require('./pages/nuevo-musico');
-const PageEditarMusico = require('./pages/editar-musico');
-const PageEditarInstrumento = require('./pages/editar-instrumento');
-*/
-const PageVerBanda = require('./pages/ver-producto');
-const PageNuevoDetalleVenta = require('./pages/nuevo-detalle-venta');
-const PageNuevoProducto = require('./pages/nuevo-producto');
+const PageHome = require("./pages/home");
+
+const PageNuevoVendedor = require("./pages/nuevo-vendedor");
+const PageEditarVendedor = require("./pages/editar-vendedor");
+
+const PageNuevoProducto = require("./pages/nuevo-producto");
+const PageVerProducto = require("./pages/ver-producto");
+const PageEditarProducto = require("./pages/editar-producto");
+
+const PageVerVenta = require("./pages/ver-venta");
+const PageNuevaVenta = require("./pages/nueva-venta");
 
 const router = createBrowserRouter([
-	{path: '/', element: <PageHome />},
-	/*{path: '/ver-instrumento/:id', element: <PageVerInstrumento />},
-	{path: '/nuevo-instrumento', element: <PageNuevoInstrumento />},
-	{path: '/nuevo-musico', element: <PageNuevoMusico />},
-	{path: '/editar-musico/:id', element: <PageEditarMusico />},
-	{path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},*/
-	{path: '/nuevo-detalle-venta', element: <PageNuevoDetalleVenta />},
-	{path: '/ver-producto/:id/nuevo-producto', element: <PageNuevoProducto />},
-])
+    { path: "/", element: <PageHome /> },
+    { path: "/nuevo-vendedor", element: <PageNuevoVendedor /> },
+    { path: "/editar-vendedor/:id", element: <PageEditarVendedor /> },
 
+    { path: "/nuevo-producto", element: <PageNuevoProducto /> },
+    { path: "/ver-producto/:id", element: <PageVerProducto /> },
+    { path: "/editar-producto/:id", element: <PageEditarProducto /> },
+
+    { path: "/ver-venta/:id", element: <PageVerVenta /> },
+    { path: "/nueva-venta", element: <PageNuevaVenta /> },
+]);
 
 ReactDOM.render(
-	<React.StrictMode>
-		<RouterProvider router={router} />
-	</React.StrictMode>,
-	document.getElementById('react')
-)
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>,
+    document.getElementById("react")
+);

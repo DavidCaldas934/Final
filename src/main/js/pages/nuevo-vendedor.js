@@ -3,19 +3,15 @@ const client = require("../client");
 const { Link } = require("react-router-dom");
 const { useState } = require("react");
 
-const PageNuevoProducto = () => {
+const PageNuevoVendedor = () => {
     const [nombre, setNombre] = useState("");
-    const [precio, setPrecio] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         client({
             method: "POST",
-            path: "/api/productos",
-            entity: {
-                nombre: nombre,
-                precio: precio,
-            },
+            path: "/api/vendedores",
+            entity: { nombre: nombre },
             headers: { "Content-Type": "application/json" },
         }).done(() => {
             window.location = "/";
@@ -24,7 +20,7 @@ const PageNuevoProducto = () => {
 
     return (
         <>
-            <h1>Nuevo Producto</h1>
+            <h1>Nuevo Vendedor</h1>
             <form onSubmit={handleSubmit}>
                 <div className="textbox">
                     <input
@@ -35,28 +31,13 @@ const PageNuevoProducto = () => {
                         autocomplete="off"
                         required
                     />
-                    <label htmlFor="nombre">Nombre</label>
+                    <label>Nombre</label>
                 </div>
-                <br />
-                <div className="textbox">
-                    <input
-                        type="text"
-                        id="precio"
-                        name="precio"
-                        onChange={(e) => setPrecio(e.target.value)}
-                        autocomplete="off"
-                        required
-                    />
-                    <label htmlFor="precio">Precio</label>
-                </div>
-
-                <br />
-                <br />
-                <input class="boton" type="submit" value="Nuevo Producto" />
+                <input class="boton" type="submit" value="Nuevo Vendedor" />
             </form>
             <Link to="/">Volver</Link>
         </>
     );
 };
 
-module.exports = PageNuevoProducto;
+module.exports = PageNuevoVendedor;
