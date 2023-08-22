@@ -6,10 +6,8 @@ const client = require('../client');
 const NuevoIntegrantePage = () => {
 
     let { id } = useParams();
-    const [musicos, setMusicos] = useState([])
-    const [instrumentos, setInstrumentos] = useState([])
-    const [idMusico, setIdMusico] = useState('')
-    const [idInstrumento, setIdInstrumento] = useState('')
+    const [productos, setProductos] = useState([])
+    const [idProducto, setIdProducto] = useState('')
 
     const handleSubmit = (evento)=>{
         evento.preventDefault();
@@ -17,9 +15,7 @@ const NuevoIntegrantePage = () => {
             method: 'POST',
             path: '/api/integrantes',
             entity: {
-                banda: 'http://localhost:8080/api/bandas/'+id,
-                musico: 'http://localhost:8080/api/musicos/'+idMusico,
-                instrumento: 'http://localhost:8080/api/instrumentos/'+idInstrumento
+                producto: 'http://localhost:8080/api/productos/'+id,
             },
             headers: {'Content-Type': 'application/json'}
         }).done(()=>{
@@ -30,13 +26,13 @@ const NuevoIntegrantePage = () => {
     useEffect(() => {
         client({
             method: 'GET',
-            path: '/api/musicos'
+            path: '/api/productos'
         }).done(response=>{
-            let musicos2 = [];
-            response.entity._embedded.musicos.map(musico => {
-                musicos2.push({value: musico._links.self.href.split('/').slice(-1), label: musico.nombre})
+            let productos2 = [];
+            response.entity._embedded.musicos.map(producto => {
+                productos2.push({value: producto._links.self.href.split('/').slice(-1), label: producto.nombre})
             })
-            setMusicos(musicos2)
+            setMusicos(productos2)
         })
         client({
             method: 'GET',
@@ -53,7 +49,7 @@ const NuevoIntegrantePage = () => {
 
     return (
         <>
-            <h1>Nuevo Integrante111</h1>
+            <h1>Nuevo Integrante</h1>
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor='musico'>Musico</label>

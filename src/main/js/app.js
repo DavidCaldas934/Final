@@ -9,7 +9,7 @@ const PageNuevoMusico = require('./pages/nuevo-musico');
 const PageEditarMusico = require('./pages/editar-musico');
 const PageEditarInstrumento = require('./pages/editar-instrumento');
 */
-const PageVerBanda = require('./pages/ver-banda');
+const PageVerBanda = require('./pages/ver-producto');
 const PageNuevoIntegrante = require('./pages/nuevo-integrante');
 
 const router = createBrowserRouter([

@@ -6,7 +6,7 @@ class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
 		//this.state = { instrumentos: [], musicos: [], bandas: [] };
-		this.state = {bandas: [] };
+		this.state = {productos: [] };
 	}
 	componentDidMount() {
 		/*client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
@@ -16,8 +16,8 @@ class PageHome extends React.Component {
 			this.setState({ musicos: response.entity._embedded.musicos });
 		});
 		*/
-		client({ method: 'GET', path: '/api/bandas' }).done(response => {
-			this.setState({ bandas: response.entity._embedded.bandas });
+		client({ method: 'GET', path: '/api/productos' }).done(response => {
+			this.setState({ productos: response.entity._embedded.productos });
 		});
 
 	}
@@ -29,9 +29,9 @@ class PageHome extends React.Component {
 				<div style={{"width": "100%", "display": "flex"}}>
 					
 					<div style={{"width": "calc(100% / 2)"}}>
-						<Titulo entidad="Bandas" emoji="👩🏼‍🎤" />
-						<BandaList bandas={this.state.bandas} />
-						<Link to="/nueva-banda">Nueva Detalle Venta</Link>
+						<Titulo entidad="Producto" emoji="👩🏼‍🎤" />
+						<ProductoList producto={this.state.productos} />
+						<Link to="/nueva-producto">Nueva Detalle Venta</Link>
 					</div>
 				</div>
 
@@ -56,10 +56,10 @@ const Titulo = (props) => {
 
 
 
-class BandaList extends React.Component {
+class ProductoList extends React.Component {
 	render() {
-		const bandas = this.props.bandas.map(banda =>
-			<Banda key={banda._links.self.href} banda={banda} />
+		const productos = this.props.producto.map(producto =>
+			<Producto key={producto._links.self.href} producto={producto} />
 		);
 		return (
 			<table border="1">
@@ -68,21 +68,21 @@ class BandaList extends React.Component {
 						<th>Nombre</th>
 						<th>Acciones</th>
 					</tr>
-					{bandas}
+					{productos}
 				</tbody>
 			</table>
 		)
 	}
 }
 
-class Banda extends React.Component {
+class Producto extends React.Component {
 	render() {
-		const id = this.props.banda._links.self.href.split("/").slice(-1);
+		const id = this.props.producto._links.self.href.split("/").slice(-1);
 		return (
 			<tr>
-				<td>{this.props.banda.nombre}</td>
+				<td>{this.props.producto.nombre}</td>
 				<td>
-					<Link to={`/ver-banda/${id}`}>Ver Banda</Link>
+					<Link to={`/ver-producto/${id}`}>Ver Producto</Link>
 				</td>
 			</tr>
 		)

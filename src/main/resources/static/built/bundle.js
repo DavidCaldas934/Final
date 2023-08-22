@@ -40806,7 +40806,7 @@ const PageNuevoMusico = require('./pages/nuevo-musico');
 const PageEditarMusico = require('./pages/editar-musico');
 const PageEditarInstrumento = require('./pages/editar-instrumento');
 */
-var PageVerBanda = __webpack_require__(/*! ./pages/ver-banda */ "./src/main/js/pages/ver-banda.js");
+var PageVerBanda = __webpack_require__(/*! ./pages/ver-producto */ "./src/main/js/pages/ver-producto.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
 var router = createBrowserRouter([{
   path: '/',
@@ -40892,7 +40892,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     //this.state = { instrumentos: [], musicos: [], bandas: [] };
     _this.state = {
-      bandas: []
+      productos: []
     };
     return _this;
   }
@@ -40909,10 +40909,10 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       */
       client({
         method: 'GET',
-        path: '/api/bandas'
+        path: '/api/productos'
       }).done(function (response) {
         _this2.setState({
-          bandas: response.entity._embedded.bandas
+          productos: response.entity._embedded.productos
         });
       });
     }
@@ -40929,12 +40929,12 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           "width": "calc(100% / 2)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Bandas",
+        entidad: "Producto",
         emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
-      }), /*#__PURE__*/React.createElement(BandaList, {
-        bandas: this.state.bandas
+      }), /*#__PURE__*/React.createElement(ProductoList, {
+        producto: this.state.productos
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nueva-banda"
+        to: "/nueva-producto"
       }, "Nueva Detalle Venta"))));
     }
   }]);
@@ -40943,46 +40943,46 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
 var Titulo = function Titulo(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, props.emoji, " - ", props.entidad), /*#__PURE__*/React.createElement("span", null, "Listado completo de ", props.entidad.toLowerCase(), ":"), /*#__PURE__*/React.createElement("hr", null));
 };
-var BandaList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(BandaList, _React$Component2);
-  var _super2 = _createSuper(BandaList);
-  function BandaList() {
-    _classCallCheck(this, BandaList);
+var ProductoList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(ProductoList, _React$Component2);
+  var _super2 = _createSuper(ProductoList);
+  function ProductoList() {
+    _classCallCheck(this, ProductoList);
     return _super2.apply(this, arguments);
   }
-  _createClass(BandaList, [{
+  _createClass(ProductoList, [{
     key: "render",
     value: function render() {
-      var bandas = this.props.bandas.map(function (banda) {
-        return /*#__PURE__*/React.createElement(Banda, {
-          key: banda._links.self.href,
-          banda: banda
+      var productos = this.props.producto.map(function (producto) {
+        return /*#__PURE__*/React.createElement(Producto, {
+          key: producto._links.self.href,
+          producto: producto
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), bandas));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), productos));
     }
   }]);
-  return BandaList;
+  return ProductoList;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component3) {
-  _inherits(Banda, _React$Component3);
-  var _super3 = _createSuper(Banda);
-  function Banda() {
-    _classCallCheck(this, Banda);
+var Producto = /*#__PURE__*/function (_React$Component3) {
+  _inherits(Producto, _React$Component3);
+  var _super3 = _createSuper(Producto);
+  function Producto() {
+    _classCallCheck(this, Producto);
     return _super3.apply(this, arguments);
   }
-  _createClass(Banda, [{
+  _createClass(Producto, [{
     key: "render",
     value: function render() {
-      var id = this.props.banda._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.banda.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-banda/".concat(id)
-      }, "Ver Banda")));
+      var id = this.props.producto._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.producto.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-producto/".concat(id)
+      }, "Ver Producto")));
     }
   }]);
-  return Banda;
+  return Producto;
 }(React.Component);
 module.exports = PageHome;
 
@@ -41014,29 +41014,19 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
     id = _useParams.id;
   var _useState = useState([]),
     _useState2 = _slicedToArray(_useState, 2),
-    musicos = _useState2[0],
-    setMusicos = _useState2[1];
-  var _useState3 = useState([]),
+    productos = _useState2[0],
+    setProductos = _useState2[1];
+  var _useState3 = useState(''),
     _useState4 = _slicedToArray(_useState3, 2),
-    instrumentos = _useState4[0],
-    setInstrumentos = _useState4[1];
-  var _useState5 = useState(''),
-    _useState6 = _slicedToArray(_useState5, 2),
-    idMusico = _useState6[0],
-    setIdMusico = _useState6[1];
-  var _useState7 = useState(''),
-    _useState8 = _slicedToArray(_useState7, 2),
-    idInstrumento = _useState8[0],
-    setIdInstrumento = _useState8[1];
+    idProducto = _useState4[0],
+    setIdProducto = _useState4[1];
   var handleSubmit = function handleSubmit(evento) {
     evento.preventDefault();
     client({
       method: 'POST',
       path: '/api/integrantes',
       entity: {
-        banda: 'http://localhost:8080/api/bandas/' + id,
-        musico: 'http://localhost:8080/api/musicos/' + idMusico,
-        instrumento: 'http://localhost:8080/api/instrumentos/' + idInstrumento
+        producto: 'http://localhost:8080/api/productos/' + id
       },
       headers: {
         'Content-Type': 'application/json'
@@ -41048,16 +41038,16 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/musicos'
+      path: '/api/productos'
     }).done(function (response) {
-      var musicos2 = [];
-      response.entity._embedded.musicos.map(function (musico) {
-        musicos2.push({
-          value: musico._links.self.href.split('/').slice(-1),
-          label: musico.nombre
+      var productos2 = [];
+      response.entity._embedded.musicos.map(function (producto) {
+        productos2.push({
+          value: producto._links.self.href.split('/').slice(-1),
+          label: producto.nombre
         });
       });
-      setMusicos(musicos2);
+      setMusicos(productos2);
     });
     client({
       method: 'GET',
@@ -41073,7 +41063,7 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
       setInstrumentos(instrumentos2);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante111"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "musico"
@@ -41110,10 +41100,10 @@ module.exports = NuevoIntegrantePage;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/ver-banda.js":
-/*!****************************************!*\
-  !*** ./src/main/js/pages/ver-banda.js ***!
-  \****************************************/
+/***/ "./src/main/js/pages/ver-producto.js":
+/*!*******************************************!*\
+  !*** ./src/main/js/pages/ver-producto.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41131,47 +41121,47 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState,
   useEffect = _require2.useEffect;
-var PageVerBanda = function PageVerBanda() {
+var PageVerProducto = function PageVerProducto() {
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    banda = _useState2[0],
-    setBanda = _useState2[1];
+    producto = _useState2[0],
+    setProducto = _useState2[1];
   var _useState3 = useState([]),
     _useState4 = _slicedToArray(_useState3, 2),
     integrantes = _useState4[0],
     setIntegrantes = _useState4[1];
   useEffect(function () {
-    url_banda = '/api/bandas/' + id;
+    url_producto = '/api/productos/' + id;
     client({
       method: 'GET',
-      path: url_banda
+      path: url_producto
     }).done(function (response) {
-      return setBanda(response.entity);
+      return setProducto(response.entity);
     });
     client({
       method: 'GET',
-      path: url_banda + '/formacion'
+      path: url_producto + '/formacion'
     }).done(function (response) {
       return setIntegrantes(response.entity);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Banda"), /*#__PURE__*/React.createElement("table", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Producto"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, banda.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
+  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, producto.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Musico"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Producto"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
     return /*#__PURE__*/React.createElement("tr", {
       key: integrante.ID
-    }, /*#__PURE__*/React.createElement("td", null, integrante.MUSICO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
+    }, /*#__PURE__*/React.createElement("td", null, integrante.PRODUCTO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
-    to: "/ver-banda/".concat(id, "/nuevo-integrante")
+    to: "/ver-producto/".concat(id, "/nuevo-integrante")
   }, "Agregar integrante"), " |", /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageVerBanda;
+module.exports = PageVerProducto;
 
 /***/ }),
 
