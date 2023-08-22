@@ -40807,6 +40807,7 @@ const PageEditarMusico = require('./pages/editar-musico');
 const PageEditarInstrumento = require('./pages/editar-instrumento');
 */
 var PageVerBanda = __webpack_require__(/*! ./pages/ver-producto */ "./src/main/js/pages/ver-producto.js");
+var PageNuevoDetalleVenta = __webpack_require__(/*! ./pages/nuevo-detalle-venta */ "./src/main/js/pages/nuevo-detalle-venta.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
 var router = createBrowserRouter([{
   path: '/',
@@ -40817,8 +40818,10 @@ var router = createBrowserRouter([{
 {path: '/nuevo-musico', element: <PageNuevoMusico />},
 {path: '/editar-musico/:id', element: <PageEditarMusico />},
 {path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},*/
-
 {
+  path: '/nuevo-detalle-venta',
+  element: /*#__PURE__*/React.createElement(PageNuevoDetalleVenta, null)
+}, {
   path: '/ver-banda/:id/nuevo-integrante',
   element: /*#__PURE__*/React.createElement(PageNuevoIntegrante, null)
 }]);
@@ -40890,7 +40893,8 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     //this.state = { instrumentos: [], musicos: [], bandas: [] };
     _this.state = {
-      productos: []
+      productos: [],
+      ventas: []
     };
     return _this;
   }
@@ -40907,6 +40911,14 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       */
       client({
         method: 'GET',
+        path: '/api/ventas'
+      }).done(function (response) {
+        _this2.setState({
+          ventas: response.entity._embedded.ventas
+        });
+      });
+      client({
+        method: 'GET',
         path: '/api/productos'
       }).done(function (response) {
         _this2.setState({
@@ -40918,6 +40930,17 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Demo App!"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          "width": "calc(100% / 2)"
+        }
+      }, /*#__PURE__*/React.createElement(Titulo, {
+        entidad: "Detalle de Ventas",
+        emoji: "\uD83C\uDFB8"
+      }), /*#__PURE__*/React.createElement(VentaList, {
+        ventas: this.state.ventas
+      }), /*#__PURE__*/React.createElement(Link, {
+        to: "/nuevo-detalle-venta"
+      }, "Agregar Detalle Venta"), " |"), /*#__PURE__*/React.createElement("div", {
         style: {
           "width": "100%",
           "display": "flex"
@@ -40951,7 +40974,7 @@ var ProductoList = /*#__PURE__*/function (_React$Component2) {
   _createClass(ProductoList, [{
     key: "render",
     value: function render() {
-      var productos = this.props.producto.map(function (producto) {
+      var productos = this.props.productos.map(function (producto) {
         return /*#__PURE__*/React.createElement(Producto, {
           key: producto._links.self.href,
           producto: producto
@@ -40959,7 +40982,7 @@ var ProductoList = /*#__PURE__*/function (_React$Component2) {
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), productos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Precio"), /*#__PURE__*/React.createElement("th", null, "Acciones")), productos));
     }
   }]);
   return ProductoList;
@@ -40975,14 +40998,163 @@ var Producto = /*#__PURE__*/function (_React$Component3) {
     key: "render",
     value: function render() {
       var id = this.props.producto._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.producto.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.producto.nombre), /*#__PURE__*/React.createElement("td", null, this.props.producto.precio), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
         to: "/ver-producto/".concat(id)
-      }, "Ver Producto")));
+      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
+        to: "/editar-producto/".concat(id)
+      }, "Editar")));
     }
   }]);
   return Producto;
 }(React.Component);
+var VentaList = /*#__PURE__*/function (_React$Component4) {
+  _inherits(VentaList, _React$Component4);
+  var _super4 = _createSuper(VentaList);
+  function VentaList() {
+    _classCallCheck(this, VentaList);
+    return _super4.apply(this, arguments);
+  }
+  _createClass(VentaList, [{
+    key: "render",
+    value: function render() {
+      var ventas = this.props.ventas.map(function (venta) {
+        return /*#__PURE__*/React.createElement(Venta, {
+          key: venta._links.self.href,
+          venta: venta
+        });
+      });
+      return /*#__PURE__*/React.createElement("table", {
+        border: "1"
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "TOTAL"), /*#__PURE__*/React.createElement("th", null, "Acciones")), ventas));
+    }
+  }]);
+  return VentaList;
+}(React.Component);
+var Venta = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Venta, _React$Component5);
+  var _super5 = _createSuper(Venta);
+  function Venta() {
+    _classCallCheck(this, Venta);
+    return _super5.apply(this, arguments);
+  }
+  _createClass(Venta, [{
+    key: "render",
+    value: function render() {
+      var id = this.props.venta._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.venta.total), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-total/".concat(id)
+      }, "Ver"), " |"));
+    }
+  }]);
+  return Venta;
+}(React.Component);
 module.exports = PageHome;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/nuevo-detalle-venta.js":
+/*!**************************************************!*\
+  !*** ./src/main/js/pages/nuevo-detalle-venta.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _require = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require.useState,
+  useEffect = _require.useEffect;
+var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require2.Link,
+  useParams = _require2.useParams;
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var PageNuevoDetalleVenta = function PageNuevoDetalleVenta() {
+  var _useParams = useParams(),
+    id = _useParams.id;
+  var _useState = useState([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    productos = _useState2[0],
+    setProductos = _useState2[1];
+  var _useState3 = useState(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    idProducto = _useState4[0],
+    setIdProducto = _useState4[1];
+  var handleSubmit = function handleSubmit(evento) {
+    evento.preventDefault();
+    client({
+      method: 'POST',
+      path: '/api/productos',
+      entity: {
+        venta: venta,
+        producto: 'http://localhost:8080/api/productos/' + idProducto,
+        cantidad: cantidad
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      window.location = '/';
+    });
+  };
+  useEffect(function () {
+    client({
+      method: 'GET',
+      path: '/api/productos'
+    }).done(function (response) {
+      var productos2 = [];
+      response.entity._embedded.productos.map(function (producto) {
+        productos2.push({
+          value: producto._links.self.href.split('/').slice(-1),
+          label: producto.nombre
+        });
+      });
+      setProductos(productos2);
+    });
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Detalle de Venta"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "venta"
+  }, "Venta"), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    id: "venta",
+    name: "venta",
+    onChange: function onChange(e) {
+      return setVenta(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Producto"), /*#__PURE__*/React.createElement("select", {
+    name: "producto",
+    id: "producto",
+    onChange: function onChange(e) {
+      setIdProducto(e.target.value);
+    }
+  }, productos.map(function (producto) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: producto.value,
+      value: producto.value
+    }, producto.label);
+  })), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "cantidad"
+  }, "Cantidad"), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    id: "cantidad",
+    name: "cantidad",
+    onChange: function onChange(e) {
+      return setCantidad(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Detalle de Venta"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageNuevoDetalleVenta;
 
 /***/ }),
 
