@@ -41073,7 +41073,7 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
       setInstrumentos(instrumentos2);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante111"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", {
     htmlFor: "musico"

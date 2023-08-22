@@ -53,7 +53,7 @@ const NuevoIntegrantePage = () => {
 
     return (
         <>
-            <h1>Nuevo Integrante</h1>
+            <h1>Nuevo Integrante111</h1>
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor='musico'>Musico</label>
